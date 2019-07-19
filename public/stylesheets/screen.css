@@ -1,0 +1,25 @@
+@media screen and (min-width:1980px) {
+    body {
+        padding-left: 15%;
+        padding-right: 15%;
+        height: 100%;
+    }
+}
+.am-table-hover>tbody>tr:hover>td,
+.am-table-hover>tbody>tr:hover>th {
+background-color: #b5ecf3;
+}
+@media screen and (min-width:1366px) {
+#nav_search {
+float: right;
+max-width: 20%;
+margin-right: 5px;
+}
+}
+@media screen and (max-width:1366px) {
+#nav_search {
+float: right;
+max-width: 97%;
+margin-right: 5px;
+}
+}

@@ -1,0 +1,8 @@
+#my-alert.am-modal.am-modal-confirm(tabindex='-1')
+  .am-modal-dialog
+    .am-modal-hd 温馨提醒
+    .am-modal-bd
+      | 你，确定要执行这条命令吗？
+    .am-modal-footer
+      span.am-modal-btn(data-am-modal-cancel='') 取消
+      span.am-modal-btn(data-am-modal-confirm='',ng-click='Refresh_Data()') 确定

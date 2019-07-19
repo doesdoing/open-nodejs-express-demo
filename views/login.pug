@@ -1,101 +1,89 @@
 doctype html
 html(lang='en')
-  //
-    Creater by doesdoing
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    title login demo
+    title
+      | login
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/amazeui.min.js')
+    link(rel='stylesheet', href='stylesheets/amazeui.min.css')
+    link(rel='stylesheet', href='stylesheets/amazeui.flat.min.css')
+    script(src='javascripts/amazeui.widgets.helper.min.js')
+    script(src='javascripts/amazeui.ie8polyfill.min.js')
+    script(src='javascripts/base64.js')
+    script.
+      window.onload = function () {
+      function login_ajax() {
+      var name = document.getElementById("name").value;
+      var password = document.getElementById("password").value;
+      var json = { "Do": 'login',"DB":"user", "data": { "user": name, "password": password },"start":"","end":""};
+      var b = new Base64();
+      var login_json = b.encode(encodeURI(JSON.stringify(json)));
+      $.ajax({
+      type: "get",
+      url: "/api",
+      data: { data: login_json },
+      dataType: 'text',
+      async: true,
+      jsonp: "jsonpCallback",
+      success: function (data) {
+      setTimeout(function () {
+      console.log(data)
+      if (data == 'fail') {
+      $("#txt").html('账号密码有误');
+      $('#btn').click();
+      }
+      if (data == 'succeed') {
+      window.location.href = "/";
+      }
+      }, 1000);
+      }
+      })
+      }
+      $('#login_btn').click(function () {
+      login_ajax();
+      });
+      $(document).keyup(function (event) {
+      if (event.keyCode == 13) {
+      login_ajax();
+      }
+      });
+      }
     style.
       body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #34495e;
+      background: url('./images/bg.jpg') no-repeat;
+      background-size:
+      100% 100%;
       }
-      .box {
-      width: 30%;
-      padding: 1%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #191919;
-      text-align: center;
-      }
-      .box h1 {
-      color: white;
-      text-transform: uppercase;
-      font-weight: 500;
-      font-size: 30px
-      }
-      .box input[name="username"],
-      .box input[type="password"] {
-      border: 0;
-      background: none;
-      display: block;
-      margin: 20px auto;
-      text-align: center;
-      border: 2px solid #3498db;
-      padding: 14px 10px;
-      width: 70%;
-      outline: none;
-      color: white;
-      border-radius: 24px;
-      transition: 0.5s;
-      font-size: 18px
-      }
-      .box input[name="username"]:focus,
-      .box input[type="password"]:focus {
-      width: 80%;
-      border-color: #2ecc71;
-      }
-      .box input[type="submit"] {
-      border: 0;
-      background: none;
-      display: block;
-      margin: 20px auto;
-      text-align: center;
-      border: 2px solid #2ecc71;
-      padding: 14px 40px;
-      outline: none;
-      color: white;
-      border-radius: 24px;
-      transform: 0.25s;
-      cursor: pointer;
-      font-size: 18px
-      }
-      .box input[type="submit"]:hover {
-      background: #2ecc71
-      }
-      @media screen and (min-width:360px) and (max-width:480px){
-      .box {
-      width: 80%;
-      padding: 1%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #191919;
-      text-align: center;
-      }
-      }
-      @media screen and (min-width:800px) and (max-width:1366px){
-      .box {
-      width: 40%;
-      padding: 1%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #191919;
-      text-align: center;
-      }
+      .h {
+      margin-top: 15%;
+      max-width: 500px;
+      background-color:
+      rgba(000, 000, 000, 0.5)
       }
   body
-    form.box(action='/login', method='post')
-      h1 Login
-      input(type='text', name='username', placeholder='Username')
-      input(type='password', name='password', placeholder='Password')
-      input(type='submit', value='Login')
+    .am-g.h
+      button#btn(style='display: none', type='button', data-am-modal="{target: '#my-alert'}")
+      #my-alert.am-modal.am-modal-alert(tabindex='-1')
+        .am-modal-dialog
+          #txt.am-modal-bd
+          .am-modal-footer
+            span.am-modal-btn
+              | 确定
+      form.am-form
+        fieldset
+          h1
+            legend(style='color: white')
+              | LOGIN
+          .am-form-group
+            label(for='doc-vld-name', style='color: white')
+              | 用户：
+            input#name.am-form-field(type='text', minlength='3', maxlength='16', placeholder='输入用户名', required='')
+          .am-form-group
+            label(for='doc-vld-password', style='color: white')
+              | 密码：
+            input#password.am-form-field(type='password', minlength='6', maxlength='16', placeholder='输入密码', required='')
+          button#login_btn.am-btn.am-btn-secondary(type='button', style='float:right')
+            | 登录

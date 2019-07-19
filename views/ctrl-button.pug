@@ -1,0 +1,13 @@
+.am-btn-group.am-btn-group-xs(style='margin-bottom: 3px;margin-left: 5px;margin-right: 5px;')
+  button.am-btn.am-btn-primary(type='button', style='margin: 3px;', data-am-modal="{target: '#my-device-add'}", ng-click='clear_info()',ng-show="show")
+    i.am-icon-plus.am-icon-sm
+    |  增加
+  button.am-btn.am-btn-danger(type='button', style='margin: 3px;', data-am-modal="{target: '#my-alert'}", ng-click='del_data()',ng-show="show")
+    i.am-icon-trash.am-icon-sm
+    |  删除
+#nav_search.am-input-group
+  input.am-form-field.am-input-sm(type='text', placeholder='搜索', ng-model='search_info', ng-keyup='search_input($event)')
+  span.am-input-group-btn
+    button.am-btn.am-btn-primary.am-btn-sm(ng-click='Refresh_Data()')
+      i.am-icon-search.am-icon-fw
+      | 搜索

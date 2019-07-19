@@ -1,0 +1,45 @@
+.my-modal-btn {
+    display: table-cell !important;
+    padding: 0 5px;
+    height: 44px;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    font-size: 1.6rem;
+    line-height: 44px;
+    text-align: center;
+    color: #0e90d2;
+    display: block;
+    word-wrap: normal;
+    /* for IE */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    border-right: 1px solid #dedede;
+}
+
+.my-modal-btn:first-child {
+    border-radius: 0 0 0 0;
+}
+
+.my-modal-btn:last-child {
+    border-right: none;
+    border-radius: 0 0 0 0;
+}
+
+.my-modal-btn:first-child:last-child {
+    border-radius: 0 0 0 0;
+}
+
+.my-modal-btn{
+    font-weight: 500;
+}
+
+.my-modal-btn:active {
+    background: #d4d4d4;
+}
+
+.my-modal-btn+.my-modal-btn {
+    border-left: 1px solid #dedede;
+}
+

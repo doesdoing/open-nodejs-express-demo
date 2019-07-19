@@ -1,0 +1,81 @@
+doctype html
+html(ng-app='myApp', lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Document
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/base64.js')
+    script(src='javascripts/amazeui.min.js')
+    link(rel='stylesheet', href='stylesheets/amazeui.min.css')
+    link(rel='stylesheet', href='stylesheets/screen.css')
+    link(rel='stylesheet', href='stylesheets/changed.css')
+    link(rel='icon', href='data:;base64,=')
+    script(src='javascripts/angular.min.js')
+    script(src='javascripts/app.factory.js')
+    script(src='javascripts/user.js')
+  body(ng-controller='siteCtrl')
+    include header
+    include alert
+    #my-device-add.am-modal.am-modal-alert(tabindex='-1')
+      .am-modal-dialog
+        .am-modal-hd 添加设备信息
+        .am-modal-bd
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%;display:none')
+            span.am-input-group-label(style='width: 30%;') ID
+            input.am-form-field(type='text', ng-model='ID', style='width: 98%;', value='{{ID}}')
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
+            span.am-input-group-label(style='width: 30%') 
+              | 用户名字
+            input.am-form-field(type='text', ng-model='Login_name', style='width:98%', value='{{Login_name}}')
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
+            span.am-input-group-label(style='width: 30%')
+              | 登录账号
+            input.am-form-field(type='text', ng-model='Login_user', style='width: 98%', value='{{Login_user}}')
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
+            span.am-input-group-label(style='width: 30%')
+              | 登录密码
+            input.am-form-field(type='text', ng-model='Login_password', style='width: 98%', value='{{Login_password}}')
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
+            span.am-input-group-label(style='width: 30%')
+              | 用户头像
+            input.am-form-field(type='text', ng-model='Login_ico', style='width: 98%', value='{{Login_ico}}')
+          .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
+            span.am-input-group-label(style='width: 30%')
+              | 用户权限
+            #power.am-form-group()
+              label.am-checkbox-inline(style='float: left;margin-left:10px')
+                input(type='radio', name='admin', value='0', data-am-ucheck='')
+                |  管理员
+              label.am-checkbox-inline(style='float: left;')
+                input(type='radio', name='admin', value='1', data-am-ucheck='')
+                |  普通用户
+        .am-modal-footer
+          span.am-modal-btn(data-am-modal-cancel='') 取消
+          span.am-modal-btn(data-am-modal-confirm='',data-am-modal="{target: '#my-alert'}") 确定
+    .am-g
+      include ctrl-button
+      .am-g(style='margin-left: 5px;margin-right: 5px;min-height: 600px')
+        table.am-table.am-table-hover.am-table-bordered
+          thead
+            tr
+              th 用户头像
+              th 用户名字
+              th 登录账号
+              th 编辑/查看
+          tbody
+            tr(ng-repeat='i in data')
+              td(style='display:none') {{i.ID}}
+              td
+                input(ng-click='select_id($index)', type='checkbox', style='margin: 3px;transform: scale(1.5)')
+                img.am-img-thumbnail.am-circle(ng-src='/images/{{i.Login_ico?i.Login_ico:"123.jpeg"}}', alt='...', style='width: 60px;height: 60px;')
+              td.am-text-middle {{i.Login_name}}
+              td.am-text-middle {{i.Login_user}}
+              td.am-text-middle
+                button.am-btn.am-btn-primary.am-btn-xs(type='button', ng-click='edit_or_lookup(i)', data-am-modal="{target: '#my-device-add'}")
+                  i.am-icon-pencil.am-icon-sm 修改/查看
+    include personal-setting
+    include personal-ico
+    include footer
+

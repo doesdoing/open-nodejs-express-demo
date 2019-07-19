@@ -1,0 +1,27 @@
+#my-personal-setting.am-modal.am-modal-alert(tabindex='-1')
+  .am-modal-dialog
+    .am-modal-hd 个人信息设置
+    .am-modal-bd
+      img.am-img-thumbnail.am-circle(ng-src='images/{{Login_ico}}', alt='...', style='width: 120px;height:120px;')
+      .am-input-group.am-input-group-primary(style='margin: 3px;width:100%;')
+        span.am-input-group-label(style='width: 30%;') 登录账号
+        input.am-form-field(type='text', readonly='readonly', ng-model='Login_user', value='{{Login_user}}')
+      .am-input-group.am-input-group-primary(style='margin: 3px;width:100%;')
+        span.am-input-group-label(style='width: 30%;') 登录密码
+        input.am-form-field(type='text', ng-model='Login_password', value='{{Login_password}}')
+      .am-input-group.am-input-group-primary(style='margin: 3px;width:100%;')
+        span.am-input-group-label(style='width: 30%;') 用户名字
+        input.am-form-field(type='text', ng-model='Login_name', value='{{Login_name}}')
+      .am-input-group.am-input-group-primary(style='margin: 3px;width:100%;')
+        span.am-input-group-label(style='width: 30%;') 个人头像
+        input#upload_file(type='file', name='upload_file', style='display: none;', onchange='change();')
+        input#upload_file_tmp.am-form-field(type='text', name='upload_file_tmp', style='width:100%;')
+        span.am-input-group-btn
+          button#select_file.am-btn.am-btn-primary.am-btn-sm(type='button', onclick='upload_file.click();') 浏览
+      script.
+        function change() {
+        document.getElementById("upload_file_tmp").value = document.getElementById("upload_file").value;
+        }
+    .am-modal-footer
+      span.am-modal-btn(data-am-modal-cancel='') 取消
+      span.my-modal-btn(data-am-modal-confirm='', ng-click='Refresh_Data(Do)') 确定

@@ -1,29 +1,22 @@
 doctype html
-html
+html(ng-app='myApp', lang='en')
   head
-    title Bootstrap 实例
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Document
     script(src='javascripts/jquery.min.js')
-    script(src='javascripts/bootstrap.min.js')
-  body
-    .container
-      h2 模态框实例
-      // 按钮：用于打开模态框
-      button.btn.btn-primary(type='button', data-toggle='modal', data-target='#myModal')
-        | 打开模态框
-      // 模态框
-      #myModal.modal.fade
-        .modal-dialog
-          .modal-content
-            // 模态框头部
-            .modal-header
-              h4.modal-title 模态框头部
-              button.close(type='button', data-dismiss='modal') ×
-            // 模态框主体
-            .modal-body
-              | 模态框内容..
-            // 模态框底部
-            .modal-footer
-              button.btn.btn-secondary(type='button', data-dismiss='modal') 关闭
+    script(src='javascripts/base64.js')
+    script(src='javascripts/amazeui.min.js')
+    link(rel='stylesheet', href='stylesheets/amazeui.min.css')
+    link(rel='stylesheet', href='stylesheets/screen.css')
+    link(rel='stylesheet', href='stylesheets/changed.css')
+    link(rel='icon', href='data:;base64,=')
+    script(src='javascripts/angular.min.js')
+    script(src='javascripts/app.factory.js')
+    script(src='javascripts/index.js')
+  body(ng-controller='siteCtrl')
+    include header
+    include personal-setting
+    include personal-ico
+    include footer

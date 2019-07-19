@@ -1,0 +1,9 @@
+.am-g
+  ul.am-pagination.am-pagination-right(style='margin-right:10px')
+    li(ng-click='prev_btn()')
+      a(href='')
+        | <<
+    li(ng-class="{'am-active': $index != focus,'am-active': $index == focus}", ng-repeat='i in page |limitTo:10:page_index', ng-click='index_page_btn($index)')
+      a(href='#') {{i+1}}
+    li(ng-click='next_btn()')
+      a(href='') >>
