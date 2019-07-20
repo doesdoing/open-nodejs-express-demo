@@ -3,7 +3,7 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
     $scope.search_info = "";
     var li = document.getElementById('nav').getElementsByTagName('li');
     li[5].className = 'am-active';
-    $scope.show=true;
+    $scope.show = true;
     $scope.get_data = dataService.Ajax;
     /********/
     $scope.temp_arr = [];
@@ -31,17 +31,12 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
                 "start": "",
                 "end": ""
             }, "cb": function (res) {
-                console.log(res);
                 $scope.ID = res.ID;
                 $scope.Login_user = res.Login_user;
                 $scope.Login_password = res.Login_password;
-                $scope.Login_name = res.Login_name;
-                $scope.Login_ico = res.Login_ico;
-                if ($scope.Login_level == '0') {
-                    $scope.admin = $('#power').find('input').eq(0).attr('checked', 'checked');
-                } else {
-                    $scope.user = $('#power').find('input').eq(1).attr('checked', 'checked');
-                }
+                $scope.Login_name = $scope.Login_name1 = res.Login_name;
+                $scope.Login_ico = $scope.Login_ico1 = res.Login_ico;
+                $scope.Login_level = res.Login_level;
             }
         };
         $scope.admin = $(":radio:checked").val();
@@ -58,20 +53,18 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
                     "ID": $scope.ID ? $scope.ID : "",
                     "Login_user": $scope.Login_user ? $scope.Login_user : "",
                     "Login_password": $scope.Login_password ? $scope.Login_password : "",
-                    "Login_name": $scope.Login_name ? $scope.Login_name : "",
+                    "Login_name": $scope.Login_name1 ? $scope.Login_name1 : "",
                     "Login_level": $scope.admin,
-                    "Login_ico": $scope.Login_ico ? $scope.Login_ico : ""
+                    "Login_ico": $scope.Login_ico1 ? $scope.Login_ico1 : "123.jpeg"
                 }
             },
             "cb": function (res) {
-                console.log(res);
                 $scope.data = res.data;
             }
         };
 
     };
     $scope.Upload = dataService.Upload;
-
     $scope.Refresh_Data = function (e) {
         if (e) {
             $scope.get_data_json_1 = {
@@ -86,41 +79,49 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
                         "ID": $scope.ID ? $scope.ID : "",
                         "Login_user": $scope.Login_user ? $scope.Login_user : "",
                         "Login_password": $scope.Login_password ? $scope.Login_password : "",
-                        "Login_name": $scope.Login_name ? $scope.Login_name : "",
+                        "Login_name": $scope.Login_name1 ? $scope.Login_name1 : "",
                     }
                 },
-                "cb": function (res) {
-                }
-            }; 
+                "cb": function (res) {}
+            };
             $scope.get_data($scope.get_data_json_1);
             $scope.Upload();
         }
-        $scope.Get_data_json();    
-        $scope.get_data($scope.get_data_json);
+        $scope.Get_data_json();
+        if ($scope.Login_user && $scope.Login_password && $scope.Login_name) {
+            $scope.get_data($scope.get_data_json);
+        }
         $scope.Do = 'find';
-        $scope.Get_data_json();    
-        setTimeout(function(){
+        $scope.Get_data_json();
+        setTimeout(function () {
             $scope.get_data($scope.get_data_json);
             $scope.get_data($scope.get_personal_json);
-        }, 1000);
+        }, 500);
     };
     $scope.edit_or_lookup = function (i) {
+        if (i.Login_level == '0') {
+            $(":radio[value=0]").uCheck('check');
+        }else {
+            $(":radio[value=1]").uCheck('check');
+        }
         $scope.Do = 'change';
         $scope.ID = i.ID;
         $scope.Login_user = i.Login_user;
         $scope.Login_password = i.Login_password;
-        $scope.Login_name = i.Login_name;
-        $scope.Login_ico = i.Login_ico;
+        $scope.Login_name1 = i.Login_name;
+        $scope.Login_ico1 = i.Login_ico;
+        $scope.Login_level = i.Login_level;   
     };
     /********/
     $scope.clear_info = function () {
-        $(":radio").removeAttr('checked');
+        $(":radio[value=1]").uCheck('uncheck');
+        $(":radio[value=0]").uCheck('uncheck');
         $scope.Do = 'add';
         $scope.ID = '';
         $scope.Login_user = '';
         $scope.Login_password = '';
-        $scope.Login_name = '';
-        $scope.Login_ico = '123.jpeg';
+        $scope.Login_name1 = '';
+        $scope.Login_ico1 = '123.jpeg';
     };
     /********/
 

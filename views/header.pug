@@ -1,6 +1,6 @@
 header.am-topbar
-  h1.am-topbar-brand(data-am-modal="{target: '#my-personal-icon'}")
-    img.am-img-thumbnail.am-circle(ng-src='images/{{Login_ico}}', alt='...', style='width: 60px;height: 60px;')
+  h1.am-topbar-brand(data-am-modal="{target: '#my-personal-setting'}" )
+    img.am-img-thumbnail.am-circle(ng-src='images/{{Login_ico?Login_ico:"123.jpeg"}}', alt='...', style='width: 70px;height: 70px;')
   button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-btn-success.am-show-sm-only(data-am-collapse="{target: '#doc-topbar-collapse'}")
     span.am-sr-only 导航切换
     span.am-icon-bars
@@ -19,13 +19,6 @@ header.am-topbar
       li(ng-show='show')
         a(ng-href='/user') 用户信息
     .am-topbar-right
-      .am-dropdown(data-am-dropdown="{boundary: '.am-topbar'}")
-        button.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm.am-dropdown-toggle(data-am-dropdown-toggle='')
-          i.am-icon-user.am-icon-fw
-          | {{Login_name}}
-          span.am-icon-caret-down
-        ul.am-dropdown-content
-          li
-            a(data-am-modal="{target: '#my-personal-setting'}", ng-click='') 个人设置
-          li
-            a(href='/logout') 退出系统
+      a(href='/logout')
+        button.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm 退出登录
+         

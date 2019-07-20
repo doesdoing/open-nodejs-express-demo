@@ -26,12 +26,10 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
                 $scope.Login_name = res.Login_name;
                 $scope.Login_ico = res.Login_ico;
                 $scope.Login_level = res.Login_level;
-                if ($scope.Login_level == '0') {
-                    $scope.admin = $('#power').find('input').eq(0).attr('checked', 'checked');
-                    $scope.show = true;
-                } else {
-                    $scope.user = $('#power').find('input').eq(1).attr('checked', 'checked');
-                    $scope.show = false;
+                if ($scope.Login_level =='0') {
+                    $scope.show=true;
+                }else{
+                    $scope.show=false;
                 }
             }
         };
@@ -116,7 +114,7 @@ app.controller('siteCtrl', function ($scope, $http, dataService) {
         setTimeout(function () {
             $scope.get_data($scope.get_data_json);
             $scope.get_data($scope.get_personal_json);
-        }, 1000);
+        }, 500);
     };
     $scope.Refresh_Data();
     /********/

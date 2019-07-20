@@ -1,4 +1,5 @@
 app.controller('siteCtrl', function ($scope, $http,dataService) {
+    $scope.Do='find';
     $scope.get_personal_json = {
         "url": "/api",
         "data": {
@@ -14,11 +15,9 @@ app.controller('siteCtrl', function ($scope, $http,dataService) {
             $scope.Login_name = res.Login_name;
             $scope.Login_ico = res.Login_ico;
             $scope.Login_level = res.Login_level;
-            if ($scope.Login_level == '0') {
-                $scope.admin = $('#power').find('input').eq(0).attr('checked', 'checked');
+            if ($scope.Login_level =='0') {
                 $scope.show=true;
-            } else {
-                $scope.user = $('#power').find('input').eq(1).attr('checked', 'checked');
+            }else{
                 $scope.show=false;
             }
         }
@@ -54,7 +53,7 @@ app.controller('siteCtrl', function ($scope, $http,dataService) {
         }
         setTimeout(function(){
             $scope.get_data($scope.get_personal_json);
-        }, 1000);
+        }, 500);
     };
     $scope.Refresh_Data();
 });

@@ -28,7 +28,7 @@ html(ng-app='myApp', lang='en')
           .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
             span.am-input-group-label(style='width: 30%') 
               | 用户名字
-            input.am-form-field(type='text', ng-model='Login_name', style='width:98%', value='{{Login_name}}')
+            input.am-form-field(type='text', ng-model='Login_name1', style='width:98%', value='{{Login_name1}}')
           .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
             span.am-input-group-label(style='width: 30%')
               | 登录账号
@@ -40,7 +40,7 @@ html(ng-app='myApp', lang='en')
           .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
             span.am-input-group-label(style='width: 30%')
               | 用户头像
-            input.am-form-field(type='text', ng-model='Login_ico', style='width: 98%', value='{{Login_ico}}')
+            input.am-form-field(type='text', ng-model='Login_ico1', style='width: 98%', value='{{Login_ico1}}')
           .am-input-group.am-input-group-primary(style='margin: 3px;width:100%')
             span.am-input-group-label(style='width: 30%')
               | 用户权限
@@ -69,13 +69,12 @@ html(ng-app='myApp', lang='en')
               td(style='display:none') {{i.ID}}
               td
                 input(ng-click='select_id($index)', type='checkbox', style='margin: 3px;transform: scale(1.5)')
-                img.am-img-thumbnail.am-circle(ng-src='/images/{{i.Login_ico?i.Login_ico:"123.jpeg"}}', alt='...', style='width: 60px;height: 60px;')
+                img.am-img-thumbnail.am-circle(ng-src='images/{{i.Login_ico}}', alt='...', style='width: 60px;height: 60px;', data-am-modal="{target: '#my-personal-icon'}")
               td.am-text-middle {{i.Login_name}}
               td.am-text-middle {{i.Login_user}}
               td.am-text-middle
                 button.am-btn.am-btn-primary.am-btn-xs(type='button', ng-click='edit_or_lookup(i)', data-am-modal="{target: '#my-device-add'}")
                   i.am-icon-pencil.am-icon-sm 修改/查看
     include personal-setting
-    include personal-ico
     include footer
 
